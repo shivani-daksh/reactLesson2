@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Chatbot</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <!-- <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script> -->
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Babel -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.7/babel.min.js"></script>
+
+    <script type="text/babel">
+
+      function ChatInput() {
+        return (
+          <>
+            <input 
+              placeholder="Send message to ChatBot" 
+              size="30" 
+            />
+            <button>Send</button>
+          </>
+        );
+      }
+
+      // function ChatMessage(props) {
+      //   // const message = props.message;
+      //   // const sender = props.sender; 
+      //   //destructuring: shortcut
+      //    const {message, sender} = props;
+      // you could have done it like this also but we have even shorter version
+
+
+
+      function ChatMessage({message, sender}) {
+        //this thing will take the messsage and sender properties values out of the object and will save them in variable called message and sender. this is just like passing a object in place of props this will also be called as destructuring.
+        // {
+        //   message:message
+        //   sender:sender
+        // }
+
+
+        /*if(sender === 'robot'){
+          return (
+            <div>
+              <img src="robot.png" width="50" />
+              {message}
+            </div>
+        );
+         } */
+
+        return (
+          <div>
+            {sender === 'robot' &&  (
+              <img src="robot.png" width="50" />
+              )}
+            {message}
+            {sender === 'user' &&  (
+              <img src="user.png" width="50" />
+              )}
+            
+          </div>
+        );
+      }
+
+
+
+      function App() {
+      
+        return (
+          <>
+          <ChatInput/>
+          <ChatMessage 
+              message="hello Chatbot" 
+              sender="user" 
+          />
+          <ChatMessage 
+              message="hey! how can I help you?" 
+              sender="robot" 
+          />
+          <ChatMessage 
+              message="Can you get me today's date?" 
+              sender="user" 
+          />
+          <ChatMessage 
+              message="Today is 31 March" 
+              sender="robot" 
+          />
+          </>
+        );   
+      }
+      
+
+      const container = document.querySelector('.js-container');
+      ReactDOM.createRoot(container).render(<App/>);
+
+    </script>
+  </body>
+</html>
